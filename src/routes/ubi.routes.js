@@ -1,8 +1,6 @@
 import { Router } from "express";
 import {
-  obtenerUbicaciones,
-  crearUbicacion,
-  borrarUbicacion
+  obtenerUbicaciones
 } from "../controllers/ubi.controladores.js";
 
 const router = Router();
