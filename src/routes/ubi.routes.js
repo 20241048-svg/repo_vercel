@@ -8,7 +8,5 @@ import {
 const router = Router();
 
 router.get("/", obtenerUbicaciones);
-router.post("/", crearUbicacion);
-router.delete("/:id", borrarUbicacion);
 
 export default router;

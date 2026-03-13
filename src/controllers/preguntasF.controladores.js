@@ -1,5 +1,5 @@
 import * as preguntasModelo from "../models/preguntas.model.js";
-
+//comit
 
 export const obtenerPreguntas = async (req, res) => {
   try {
