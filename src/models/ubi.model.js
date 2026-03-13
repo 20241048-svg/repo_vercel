@@ -6,6 +6,6 @@ export const obtenerUbicaciones = async () => {
     `SELECT id, descripcion, imagen_nombre, url
      FROM ubicaciones`
   );
-
+//no se
   return rows;
 };

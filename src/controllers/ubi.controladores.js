@@ -16,5 +16,5 @@ export const obtenerUbicaciones = async (req, res) => {
     res.status(500).json({ error: error.message });
   }
 };
-
+//si eso 
 

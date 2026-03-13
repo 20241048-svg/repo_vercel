@@ -31,7 +31,8 @@ app.use('/api/productos', productosroutes);
 
 app.use('/api/preguntas', preguntaroutes);//preguntas frecuntes
 
-app.use('/api/ubi', ubiroutes);//listado de ubicaciones
+app.use('/api/ubi', ubiroutes);//listado de 
+//revisar
 
 app.use('/api/misvis', MsVsPEroutes);
 

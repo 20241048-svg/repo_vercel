@@ -8,3 +8,4 @@ const router = Router();
 router.get("/", obtenerUbicaciones);
 
 export default router;
+//nose 
