@@ -11,6 +11,7 @@ export const reporteEmpleado = async (req, res) => {
         message: "El parámetro 'id' debe ser un número entero positivo",
       });
     }
+    
 
     // Validación de fechas obligatorias
     if (!inicio || !fin) {

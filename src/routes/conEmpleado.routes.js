@@ -10,3 +10,4 @@ router.get('/empleado/:idEmpleado', authenticateToken, ctrl.reporteEmpleado);
 export default router;
 
 
+
