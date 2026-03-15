@@ -1,4 +1,4 @@
-import * as asistenciasModelo from "../models/asistencias.model.js";
+import * as asistenciasModelo from "../models/conEmpleados.model.js";
 
 export const obtenerReportePorEmpleado = async (req, res) => {
   try {
