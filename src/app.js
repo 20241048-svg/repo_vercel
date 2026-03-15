@@ -7,6 +7,7 @@ import productosroutes from './routes/productos.routes.js'
 import MsVsPEroutes from './routes/misvisroutes.js'
 import preguntaroutes from './routes/preguntas.routes.js'//preguntas frecuentes
 import ubiroutes from './routes/ubi.routes.js'//listado de ubicasiones 
+import conEmpleadoRoutes from './routes/conEmpleado.routes.js'; // Importa las rutas de conEmpleados
 
 //crear el objeto de express para nuestra alicacion
 const app=express();
@@ -30,6 +31,8 @@ app.use('/api/grupos', gruposroutes)
 app.use('/api/productos', productosroutes);
 
 app.use('/api/preguntas', preguntaroutes);//preguntas frecuntes
+
+app.use('/api/conEmpleado', conEmpleadoRoutes); // Agrega las rutas de conEmpleados
 
 app.use('/api/ubi', ubiroutes);//listado de 
 //revisar
