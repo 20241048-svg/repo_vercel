@@ -1,26 +1,24 @@
 import * as asistenciasModelo from "../models/conEmpleados.model.js";
 
-export const obtenerReportePorEmpleado = async (req, res) => {
+export const reporteEmpleado = async (req, res) => {
   try {
-    const { idEmpleado } = req.params;
-    const { inicio, fin } = req.query;
+    const { id, inicio, fin } = req.query;
 
-    const idNum = Number(idEmpleado);
-
-    // Validaciones
-    if (!Number.isInteger(idNum) || idNum <= 0) {
+    // Validación del ID del empleado
+    if (!id || !validar.esEnteroPositivo(id)) {
       return res.status(400).json({
-        message: "El ID del empleado debe ser un número válido positivo",
+        message: "El parámetro 'id' debe ser un número entero positivo",
       });
     }
 
+    // Validación de fechas obligatorias
     if (!inicio || !fin) {
       return res.status(400).json({
-        message: "Las fechas de inicio y fin son obligatorias (formato YYYY-MM-DD)",
+        message: "Los parámetros 'inicio' y 'fin' son obligatorios (formato YYYY-MM-DD)",
       });
     }
 
-    // Validación básica de formato de fechas (puedes mejorarla con librerías como date-fns si quieres)
+    // Validación básica de formato de fechas
     const fechaRegex = /^\d{4}-\d{2}-\d{2}$/;
     if (!fechaRegex.test(inicio) || !fechaRegex.test(fin)) {
       return res.status(400).json({
@@ -28,6 +26,7 @@ export const obtenerReportePorEmpleado = async (req, res) => {
       });
     }
 
+    // Validación lógica: inicio no mayor que fin
     if (new Date(inicio) > new Date(fin)) {
       return res.status(400).json({
         message: "La fecha de inicio no puede ser mayor a la fecha fin",
@@ -35,25 +34,27 @@ export const obtenerReportePorEmpleado = async (req, res) => {
     }
 
     // Llamada al modelo
-    const resultado = await asistenciasModelo.obtenerAsistenciasPorEmpleadoRango({
-      idEmpleado: idNum,
-      fechaInicio: inicio,
-      fechaFin: fin,
-    });
+    const reporte = await grupoModelo.reporteEmpleado(id, inicio, fin);
 
+    // Respuesta consistente con tu estilo
     res.status(200).json({
-      message: resultado.length > 0 
-        ? "Reporte de asistencias obtenido correctamente" 
-        : "No se encontraron registros en el rango seleccionado",
-      total: resultado.length,
-      data: resultado,
+      message: reporte.length > 0 
+        ? "Reporte por empleado obtenido correctamente" 
+        : "No se encontraron registros en el rango de fechas seleccionado",
+      id: Number(id),
+      inicio,
+      fin,
+      total: reporte.length,
+      data: reporte
     });
 
   } catch (error) {
-    console.error("Error al obtener reporte por empleado:", error);
-    res.status(500).json({ 
-      message: "Error interno del servidor al generar el reporte",
-      error: error.message 
+    console.error("Error en reporteEmpleado:", error); // Para que aparezca en logs de Vercel
+    res.status(500).json({
+      message: "Error al generar el reporte del empleado",
+      error: error.message
     });
   }
+
+
 };
