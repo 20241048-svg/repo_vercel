@@ -1,4 +1,5 @@
 import * as asistenciasModelo from "../models/conEmpleados.model.js";
+import * as validar from '../utils/validaciones.js';
 
 export const reporteEmpleado = async (req, res) => {
   try {
@@ -33,10 +34,10 @@ export const reporteEmpleado = async (req, res) => {
       });
     }
 
-    // Llamada al modelo
-    const reporte = await grupoModelo.reporteEmpleado(id, inicio, fin);
+    // Llamada al modelo (stored procedure)
+    const reporte = await asistenciasModelo.reporteEmpleado(id, inicio, fin);
 
-    // Respuesta consistente con tu estilo
+    // Respuesta consistente con tu estilo (como obtenerEmpleados, obtenerDepartamentos, etc.)
     res.status(200).json({
       message: reporte.length > 0 
         ? "Reporte por empleado obtenido correctamente" 
@@ -49,12 +50,10 @@ export const reporteEmpleado = async (req, res) => {
     });
 
   } catch (error) {
-    console.error("Error en reporteEmpleado:", error); // Para que aparezca en logs de Vercel
+    console.error("Error en reporteEmpleado:", error); // ← Crucial para ver el error en logs de Vercel
     res.status(500).json({
       message: "Error al generar el reporte del empleado",
       error: error.message
     });
   }
-
-
 };

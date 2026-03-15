@@ -1,32 +1,20 @@
 import db from '../config/db.js';
 
-// OBTENER PUESTO Y DEPARTAMENTO
-// DE UN EMPLEADO
-export const obtenerEmpleadoValue = async (idEmpleado) => {
+// ... otras funciones como obtenerEmpleadoValue ...
 
-  const [rows] = await db.query(`
-        SELECT 
-        Id_Empleado,
-        Nombre,
-        Apellido_Paterno,
-        Apellido_Materno,
-        Correo,
-        Telefono,
-        Id_Puesto,
-        Id_Departamento,
-        Id_Tipo_Usuario
-        FROM empleados
-        WHERE Id_Empleado = ?
-    `,[Number(idEmpleado)]);
+export const reporteEmpleado = async (id, inicio, fin) => {
+  try {
+    const [rows] = await db.query(
+      `CALL sp_reporte_empleado_completo(?, ?, ?)`,
+      [Number(id), inicio, fin]
+    );
 
-  return rows;
-};
+    // En MySQL, los procedimientos almacenados devuelven un array de arrays
+    // rows[0] suele ser el resultado principal
+    return rows[0] || []; // Devuelve array vacío si no hay resultados
 
-export const reporteEmpleado = async (id, inicio, fin) =>{
-  const [rows] = await db.query(`CALL sp_reporte_empleado_completo(?, ?, ?)`,
-    [id, inicio, fin]
-  );
-
-  return rows[0]; // mysql devuelve arrays anidados en procedimientos
-
+  } catch (error) {
+    console.error("Error ejecutando sp_reporte_empleado_completo:", error);
+    throw error; // Propagamos el error al controlador para que lo maneje
+  }
 };
