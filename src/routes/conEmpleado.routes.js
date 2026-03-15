@@ -1,10 +1,13 @@
-import { Router } from "express";
-import {conEmpleado } from "../controllers/conEmpleados.controladores.js";
-import { authenticateToken } from "../middleware/auth.js";
+import { Router } from 'express';
+import * as ctrl from '../controllers/conEmpleados.controladoresjs';
 
 const router = Router();
 
-// Reporte de asistencias por empleado
-router.get("/empleado/:idEmpleado", authenticateToken, conEmpleado);
+//si
+// Ruta protegida (solo usuarios autenticados)
+router.get('/empleado/:idEmpleado', ctrl.reporteEmpleado);
 
 export default router;
+
+
+
