@@ -5,6 +5,6 @@ import { authenticateToken } from '../middleware/auth.js';
 const router = Router();
 
 // Ruta protegida (solo usuarios autenticados)
-router.get('/empleado/:idEmpleado', authenticateToken, ctrl.reporteEmpleado);
+router.get('/empleado/:idEmpleado', ctrl.reporteEmpleado);
 
 export default router;
