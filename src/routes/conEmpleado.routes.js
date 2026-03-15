@@ -1,10 +1,10 @@
 import { Router } from "express";
-import { reporteEmpleado } from "../controllers/conEmpleados.controladores.js";
+import {conEmpleado } from "../controllers/conEmpleados.controladores.js";
 import { authenticateToken } from "../middleware/auth.js";
 
 const router = Router();
 
 // Reporte de asistencias por empleado
-router.get("/empleado/:idEmpleado", authenticateToken, reporteEmpleado);
+router.get("/empleado/:idEmpleado", authenticateToken, conEmpleado);
 
 export default router;
