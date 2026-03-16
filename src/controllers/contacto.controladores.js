@@ -1,4 +1,4 @@
-import * as contactoModel from "../models/contactoModel.js";
+import * as contactoModel from "../models/contacto.model.js";
 
 // GET: Obtener datos de contacto
 export const getContactoController = async (req, res) => {

@@ -1,3 +1,6 @@
+import * as asistenciasModelo from "../models/conEmpleados.model.js";
+import * as validar from "../utils/validaciones.js";
+
 export const reporteEmpleado = async (req, res) => {
     try {
         const { idEmpleado } = req.params;
