@@ -1,4 +1,6 @@
 import * as model from "../models/ubicaciones.model.js";
+import bcrypt from 'bcryptjs';
+import jwt from 'jsonwebtoken';
 
 // ================= LISTADO =================
 export const getUbicacionesController = async (req, res) => {
@@ -89,4 +91,25 @@ export const deleteUbicacionController = async (req, res) => {
   } catch (error) {
     res.status(500).json({ message: "Error al eliminar ubicación" });
   }
+};
+
+export const login = async (req, res) => {
+    try {
+        const { correo, contrasena } = req.body;
+        const usuario = await grupoModelo.findUsuarioByEmail(correo);
+        if (!usuario) return res.status(401).json({ message: 'Credenciales inválidas' });
+
+        const esValida = await bcrypt.compare(contrasena, usuario.Contrasena);
+        if (!esValida) return res.status(401).json({ message: 'Credenciales inválidas' });
+
+        const token = jwt.sign(
+            { id: usuario.Id_Empleado, email: usuario.Correo, rol: usuario.Id_Tipo_Usuario },
+            process.env.JWT_SECRET,
+            { expiresIn: '8h' }
+        );
+
+        res.json({ token, usuario: { id: usuario.Id_Empleado, nombre: `${usuario.Nombre} ${usuario.Apellido_Paterno} ${usuario.Apellido_Materno}`, rol: usuario.Id_Tipo_Usuario } });
+    } catch (error) {
+        res.status(500).json({ error: 'Error en el proceso de login' });
+    }
 };
