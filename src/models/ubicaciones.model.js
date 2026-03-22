@@ -30,7 +30,7 @@ export const createUbicacion = async (data) => {
 
 // ================= ACTUALIZAR =================
 export const updateUbicacion = async (id, data) => {
-  const { descripcion, imagen_nombre, url, latitud, longitud} = data;
+  const { descripcion, imagen_nombre, url, latitud, longitud } = data;
 
   const [result] = await db.query(
     `UPDATE ubicaciones 
