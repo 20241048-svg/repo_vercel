@@ -11,8 +11,13 @@ import conEmpleados from'./routes/conEmpleado.routes.js' //Rutas para el reporte
 import contactoRoutes from './routes/contacto.routes.js' // Rutas para contacto
 import ubicacionesRoutes from'./routes/ubicaciones.routes.js'// Rutas para ubicaciones
 
-//crear el objeto de express para nuestra alicacion
+//crear el objeto de express para nuestra alicacion 
 const app=express();
+
+app.use(cors());
+//definimos una peticion al servidor
+// definimos un midlewere para poder implementar jaason en nuestra apo
+app.use(express.json())
 
 //configuramos el acceso al archivo , .env
 dotenv.config()
@@ -20,14 +25,6 @@ dotenv.config()
 //definimos nuestro puerto  //sugierto 
 const port= process.env.PORT || 3000
 
-app.use(cors({
-  origin: '*', // O puedes poner 'http://127.0.0.1:5500' para mayor seguridad
-  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
-  allowedHeaders: ['Content-Type', 'Authorization']
-}));
-//definimos una peticion al servidor
-// definimos un midlewere para poder implementar jaason en nuestra apo
-app.use(express.json())
 
 
 //AQUI SE ANADEN LAS RUTAS DE LOS CONTROLADORES, IMPORTANDO LOS CONTROLADORES Y DEFINIENDO LAS RUTAS PARA CADA UNO DE ELLOS, ESTO SE HACE EN LA CARPETA ROUTES, DONDE SE IMPORTAN LOS CONTROLADORES Y SE DEFINEN LAS RUTAS PARA CADA UNO DE ELLOS, LUEGO SE IMPORTAN LAS RUTAS EN ESTE ARCHIVO Y SE USAN CON EL MIDLEWERE app.use() PARA DEFINIR LAS RUTAS DE LA APLICACION, ASI SE ORGANIZA MEJOR EL CODIGO Y SE SEPARA LA LOGICA DE LOS CONTROLADORES DE LAS RUTAS, LO QUE HACE QUE EL CODIGO SEA MAS LIMPIO Y FACIL DE MANTENER.
