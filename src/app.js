@@ -11,6 +11,7 @@ import conEmpleados from'./routes/conEmpleado.routes.js' //Rutas para el reporte
 import contactoRoutes from './routes/contacto.routes.js' // Rutas para contacto
 import ubicacionesRoutes from'./routes/ubicaciones.routes.js'// Rutas para ubicaciones
 
+
 //crear el objeto de express para nuestra alicacion 
 const app=express();
 
