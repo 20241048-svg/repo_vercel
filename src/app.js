@@ -13,17 +13,8 @@ import ubicacionesRoutes from'./routes/ubicaciones.routes.js'// Rutas para ubica
 
 //crear el objeto de express para nuestra alicacion 
 const app=express();
-app.use((req, res, next) => {
-    res.setHeader("Access-Control-Allow-Origin", "*");
-    res.setHeader("Access-Control-Allow-Methods", "GET,POST,PUT,DELETE,OPTIONS");
-    res.setHeader("Access-Control-Allow-Headers", "Content-Type, Authorization");
 
-    if (req.method === "OPTIONS") {
-        return res.status(200).end();
-    }
-
-    next();
-});
+app.use(cors());
 //definimos una peticion al servidor
 // definimos un midlewere para poder implementar jaason en nuestra apo
 app.use(express.json())
