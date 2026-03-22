@@ -9,6 +9,7 @@ import preguntaroutes from './routes/preguntas.routes.js'//preguntas frecuentes
 import ubiroutes from './routes/ubi.routes.js'//listado de ubicasiones 
 import conEmpleados from'./routes/conEmpleado.routes.js' //Rutas para el reporte de empleados
 import contactoRoutes from './routes/contacto.routes.js'; // Rutas para contacto
+import ubicacionesRoutes from './routes/ubicaciones.routes.js'; // Rutas para ubicaciones
 
 //crear el objeto de express para nuestra alicacion
 const app=express();
@@ -37,6 +38,7 @@ app.use('/api/ubi', ubiroutes);//listado de ubi
 app.use('/api/contacto', contactoRoutes); // Rutas para contacto
 app.use('/api/conEmpleados',conEmpleados); 
 app.use('/api/misvis', MsVsPEroutes);
+app.use('/api/ubicaciones', ubicacionesRoutes); // Rutas para ubicaciones
 
 
 app.get('/', (req, res)=>{
