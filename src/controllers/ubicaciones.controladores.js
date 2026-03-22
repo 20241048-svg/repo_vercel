@@ -1,4 +1,6 @@
 import * as model from "../models/ubicaciones.model.js";
+
+
 // ================= LISTADO =================
 export const getUbicacionesController = async (req, res) => {
   try {
@@ -35,7 +37,7 @@ export const getUbicacionByIdController = async (req, res) => {
 };
 
 // ================= CREAR =================
-export const createUbicacionController = async (req, res) => {
+export const crearubicacion = async (req, res) => {
   try {
     const id = await model.createUbicacion(req.body);
 
@@ -51,7 +53,7 @@ export const createUbicacionController = async (req, res) => {
 };
 
 // ================= ACTUALIZAR =================
-export const updateUbicacionController = async (req, res) => {
+export const actualizarubi = async (req, res) => {
   try {
     const { id } = req.params;
 
@@ -71,7 +73,7 @@ export const updateUbicacionController = async (req, res) => {
 };
 
 // ================= ELIMINAR =================
-export const deleteUbicacionController = async (req, res) => {
+export const eliminarubi = async (req, res) => {
   try {
     const { id } = req.params;
 

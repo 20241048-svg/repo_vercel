@@ -1,4 +1,4 @@
-import db from "../config/db.js";
+import db from '../config/db.js'
 
 // ================= LISTADO =================
 export const getUbicaciones = async () => {
@@ -17,7 +17,7 @@ export const getUbicacionById = async (id) => {
 
 // ================= CREAR =================
 export const createUbicacion = async (data) => {
-  const { descripcion, imagen_nombre, url } = data;
+  const { descripcion, imagen_nombre, url, latitud, longitud } = data;
 
   const [result] = await db.query(
     `INSERT INTO ubicaciones (descripcion, imagen_nombre, url, latitud, longitud)
@@ -30,7 +30,7 @@ export const createUbicacion = async (data) => {
 
 // ================= ACTUALIZAR =================
 export const updateUbicacion = async (id, data) => {
-  const { descripcion, imagen_nombre, url, latitud, longitud } = data;
+  const { descripcion, imagen_nombre, url, latitud, longitud} = data;
 
   const [result] = await db.query(
     `UPDATE ubicaciones 
