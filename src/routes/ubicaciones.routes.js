@@ -6,8 +6,8 @@ const router = Router();
 
 router.get("/", ctrl.getUbicacionesController);
 router.get("/:id",  ctrl.getUbicacionByIdController);
-router.post("/",  ctrl.createUbicacionController);
-router.put("/:id",ctrl.updateUbicacionController);
-router.delete("/:id", ctrl.deleteUbicacionController);
+router.post("/",  ctrl.crearubicacion);
+router.put("/:id",ctrl.actualizarubi);
+router.delete("/:id", ctrl.eliminarubi);
 
 export default router;
