@@ -1,11 +1,7 @@
 import { Router } from "express";
 import * as ctrl from "../controllers/ubicaciones.controladores.js";
 //import { verificarToken } from "../middlewares/auth.middleware.js";
-import cors from "cors";
 
-app.use(cors({
-    origin: "*"
-}));
 
 const router = Router();
 
