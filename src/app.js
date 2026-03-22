@@ -14,7 +14,14 @@ import ubicacionesRoutes from'./routes/ubicaciones.routes.js'// Rutas para ubica
 //crear el objeto de express para nuestra alicacion 
 const app=express();
 
-app.use(cors());
+app.use(cors({
+    origin: "*",
+    methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
+    allowedHeaders: ["Content-Type", "Authorization"]
+}));
+
+// MUY IMPORTANTE para preflight
+app.options("*", cors());
 //definimos una peticion al servidor
 // definimos un midlewere para poder implementar jaason en nuestra apo
 app.use(express.json())
