@@ -4,10 +4,10 @@ import { verificarToken } from "../middlewares/auth.middleware.js";
 
 const router = Router();
 
-router.get("/", verificarToken, ctrl.getUbicacionesController);
-router.get("/:id", verificarToken, ctrl.getUbicacionByIdController);
-router.post("/", verificarToken, ctrl.createUbicacionController);
-router.put("/:id", verificarToken, ctrl.updateUbicacionController);
-router.delete("/:id", verificarToken, ctrl.deleteUbicacionController);
+router.get("/", ctrl.getUbicacionesController);
+router.get("/:id",  ctrl.getUbicacionByIdController);
+router.post("/",  ctrl.createUbicacionController);
+router.put("/:id",ctrl.updateUbicacionController);
+router.delete("/:id", ctrl.deleteUbicacionController);
 
 export default router;
