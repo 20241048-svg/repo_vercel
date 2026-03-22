@@ -20,7 +20,11 @@ dotenv.config()
 //definimos nuestro puerto  //sugierto 
 const port= process.env.PORT || 3000
 
-app.use(cors());
+app.use(cors({
+  origin: '*', // O puedes poner 'http://127.0.0.1:5500' para mayor seguridad
+  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+  allowedHeaders: ['Content-Type', 'Authorization']
+}));
 //definimos una peticion al servidor
 // definimos un midlewere para poder implementar jaason en nuestra apo
 app.use(express.json())
