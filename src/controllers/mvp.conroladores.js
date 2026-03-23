@@ -1,36 +1,23 @@
 import * as mvp from "../models/mvp.model.js";
 // obtener
+
 export const obtenerMisVis = async (req, res) => {
-    try {
-        const [rows] = await mvp.obtenerMisVis();
-
-        res.json({
-            message: "Datos obtenidos correctamente",
-            data: rows
-        });
-
-    } catch (error) {
-        console.error(error);
-        res.status(500).json({ message: "Error al obtener datos" });
-    }
+  try {
+    const data = await mvp.getMisVis();
+    res.json(data);
+  } catch (error) {
+    console.error("Error en obtenerMisVis:", error);
+    res.status(500).json({ message: 'Error al obtener datos' });
+  }
 };
 
-// actualizar
 export const actualizarMisVis = async (req, res) => {
-    try {
-        const { tipo, contenido } = req.body;
-
-        await db.query(
-            "UPDATE misvis SET contenido = ? WHERE tipo = ?",
-            [contenido, tipo]
-        );
-
-        res.json({
-            message: "Actualizado correctamente"
-        });
-
-    } catch (error) {
-        console.error(error);
-        res.status(500).json({ message: "Error al actualizar" });
-    }
+  try {
+    const { mision, vision, info } = req.body;
+    const success = await mvp.updateMisVis({ mision, vision, info });
+    res.json({ success });
+  } catch (error) {
+    console.error("Error en actualizarMisVis:", error);
+    res.status(500).json({ message: 'Error al actualizar datos' });
+  }
 };
