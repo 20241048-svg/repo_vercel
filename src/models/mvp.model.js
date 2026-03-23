@@ -3,7 +3,7 @@ import db from '../config/db.js'
 // Obtener Misión, Visión e Info
 export const obtenerMisVis = async () => {
   const [rows] = await db.query(
-    `SELECT id, mision, vision, info 
+    `SELECT id, mision, vision, info, img_mision, img_vision,iminfo
      FROM mision_vision 
      LIMIT 1`
   );
