@@ -1,12 +1,12 @@
-import express from 'express';
-import { obtenerMisVis, actualizarMisVis } from '../controllers/misvis.controller.js';
 
-const router = express.Router();
+import { Router } from 'express';
+import * as ctrl from '../controllers/mvp.controladores.js';
+const router = Router();
 
 // GET
-router.get('/', obtenerMisVis);
+router.get('/', ctrl.obtenerMisVis);
 
 // PUT (actualizar)
-router.put('/', actualizarMisVis);
+router.put('/', ctrl.actualizarMisVis);
 
 export default router;

@@ -1,9 +1,8 @@
-import db from '../config/db.js';
-
+import * as mvp from "../models/mvp.model.js";
 // obtener
 export const obtenerMisVis = async (req, res) => {
     try {
-        const [rows] = await db.query("SELECT * FROM misvis");
+        const [rows] = await mvp.obtenerMisVis();
 
         res.json({
             message: "Datos obtenidos correctamente",

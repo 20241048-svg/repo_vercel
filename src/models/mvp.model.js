@@ -32,7 +32,7 @@ export const actualizarMisVis = async (data) => {
                 imag_mision = ?, 
                 img_vision = ?, 
                 imainfo = ?
-             WHERE id = 1`, // 🔥 IMPORTANTE: solo 1 registro
+             WHERE id = 1`, 
             [
                 mision,
                 vision,
