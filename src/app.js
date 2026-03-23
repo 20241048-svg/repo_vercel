@@ -10,6 +10,7 @@ import ubiroutes from './routes/ubi.routes.js'//listado de ubicasiones
 import conEmpleados from'./routes/conEmpleado.routes.js' //Rutas para el reporte de empleados
 import contactoRoutes from './routes/contacto.routes.js' // Rutas para contacto
 import ubicacionesRoutes from'./routes/ubicaciones.routes.js'// Rutas para ubicaciones
+import mvproutes from './routes/mvp.routes.js' // Rutas para misvis
 
 
 //crear el objeto de express para nuestra alicacion 
@@ -41,6 +42,7 @@ app.use('/api/contacto', contactoRoutes); // Rutas para contacto
 app.use('/api/conEmpleados',conEmpleados); 
 app.use('/api/misvis', MsVsPEroutes);
 app.use('/api/ubicaciones', ubicacionesRoutes); // Rutas para ubicaciones
+app.use('/api/mvp', mvproutes); // Rutas para misvis
 
 
 app.get('/', (req, res)=>{
