@@ -1,6 +1,7 @@
 
 import { Router } from 'express';
-import * as ctrl from '../controllers/mvp.controladores.js';
+import * as ctrl from '../controllers/mvp.conroladores.js';
+
 const router = Router();
 
 // GET

@@ -1,4 +1,4 @@
-import db from '../config/db.js';
+import db from "../config/db.js"; 
 
 // ================= OBTENER =================
 // (trae todo, normalmente será 1 solo registro)
