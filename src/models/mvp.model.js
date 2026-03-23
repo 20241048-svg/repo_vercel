@@ -1,51 +1,26 @@
-import db from "../config/db.js"; 
+import db from '../config/db.js'
 
-// ================= OBTENER =================
-// (trae todo, normalmente será 1 solo registro)
+// Obtener Misión, Visión e Info
 export const obtenerMisVis = async () => {
-    try {
-        const [rows] = await db.query("SELECT * FROM misvis LIMIT 1");
-        return rows[0]; // solo un objeto
-    } catch (error) {
-        console.error("Error en obtenerMisVis:", error);
-        throw error;
-    }
+  const [rows] = await db.query(
+    `SELECT id, mision, vision, info 
+     FROM mision_vision 
+     LIMIT 1`
+  );
+  return rows[0]; 
 };
 
-// ================= ACTUALIZAR =================
+// Actualizar los 3 campos
 export const actualizarMisVis = async (data) => {
-    try {
-        const {
-            mision,
-            vision,
-            info,
-            imag_mision,
-            img_vision,
-            imainfo
-        } = data;
+  // Extraemos lo que viene del JS
+  const { mision, vision, info } = data;
 
-        const [result] = await db.query(
-            `UPDATE misvis SET 
-                mision = ?, 
-                vision = ?, 
-                info = ?, 
-                imag_mision = ?, 
-                img_vision = ?, 
-                imainfo = ?
-             WHERE id = 1`, 
-            [
-                mision,
-                vision,
-                info,
-                imag_mision,
-                img_vision,
-                imainfo
-            ]
-        );
+  const [result] = await db.query(
+    `UPDATE mision_vision 
+     SET mision = ?, vision = ?, info = ? 
+     WHERE id = 1`,
+    [mision, vision, info]
+  );
 
-        return result.affectedRows;
-    } catch (error) {
-        console.error("Error en actualizarMisVis:", error);
-        throw error;
-    }
+  return result.affectedRows > 0;
 };
